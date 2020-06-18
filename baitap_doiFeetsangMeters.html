@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển đổi feet và meters</title>
+</head>
+<body>
+    <div id="result"></div>
+    <script>
+        function footToMeter(foot) {
+            return 0.305 * foot;
+        }
+        function meterToFoot(meter) {
+            return 3.279 * meter;
+        }
+        let result = '<table cellspacing="3" cellpadding="5" style="border: 1px black solid; border-collapse: collapse;">';
+            result += '<tr style="border: 1px solid black"><th>Feet</th><th>Meters</th><th>Meters</th><th>Feet</th></tr>';
+        for (let i=1; i <= 10; i++) {
+            result += ('<tr><td>' + i + '</td><td>'+ footToMeter(i) + '</td>');
+            result += ('<td>' + (20+(i-1)*5) + '</td> <td>'+meterToFoot((20+(i-1)*5)) +'</td> </tr>');
+        }
+        result += '</table>';
+        document.getElementById('result').innerHTML = result;
+    </script>
+</body>
+</html>
