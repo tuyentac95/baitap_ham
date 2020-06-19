@@ -6,7 +6,7 @@
 </head>
 <body>
     <h3>Add new product</h3>
-    <p><input type="text" value="" id="newProduct"/> <input type="button" value="Add" onclick="addProduct();"/></p>
+    <p><input type="text" value="" id="newProduct" placeholder="New Product"/> <input type="button" value="Add" onclick="addProduct();"/></p>
     <h3>Display All Product</h3>
     <p><span id="prouctTable"></span></p>
     <script>
@@ -14,7 +14,7 @@
         showProductList();
         function showProductList() {
             let productList = '<table>';
-            productList += '<tr> <th>Product Name</th><th colspan="2">' + productName.length + ' products </th>'
+            productList += '<tr> <th style="text-align: left">Product Name</th><th colspan="2" style="text-align: right">' + productName.length + ' products </th>'
             for (let i=0; i < productName.length; i++) {
                 productList += '<tr> <td onclick="nameProduct('+i+');">' + productName[i] + '</td>';
                 productList += '<td><input type="button" value="Edit" onclick="editProduct('+i+');"/></td>';
@@ -36,8 +36,6 @@
         }
         function editProduct(x) {
             let fixed_product = document.getElementById('newProduct').value;
-            console.log(fixed_product);
-            console.log(fixed_product === null);
             if ((fixed_product === '') || (productName.indexOf(fixed_product) >= 0)) {
                 alert('Nhập lại sản phẩm');
             } else {
