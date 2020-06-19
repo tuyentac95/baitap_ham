@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập và sử dụng hàm 02</title>
+</head>
+<body>
+    <h3>Bài 1 + 3:</h3>
+    <p>
+        <input type="number" id="iptNum1"/>
+        <input type="button" value="Tính bình phương" onclick="showSquare();"/>
+        <input type="button" value="Tính giai thừa" onclick="showFactorial();"/>
+    </p>
+    <div id="result1"></div>
+    <script>
+        function showSquare() {
+            let my_number = document.getElementById('iptNum1').value;
+            document.getElementById('result1').innerHTML = getSquare(my_number);
+        }
+        function showFactorial() {
+            let my_number = document.getElementById('iptNum1').value;
+            if (my_number % 1 !== 0) {
+                alert('Nhập sô nguyên');
+            } else
+            document.getElementById('result1').innerHTML = getFactorial(my_number);
+        }
+        function getSquare(x) {
+            return x*x;
+        }
+        function getFactorial(x) {
+            let xFact = 1;
+            for (let i=1; i <= x; i++) {
+                xFact *= i;
+            } return xFact;
+        }
+    </script>
+    <h3>Bài 2:</h3>
+    <p><input type="button" value="Nhập bán kính" onclick="iptR()"/></p>
+    <div id="result2a"></div>
+    <div id="result2b"></div>
+    <script>
+        const PI = 3.14;
+        function iptR() {
+            let my_radius = +prompt('Nhập bán kính: ');
+            document.getElementById('result2a').innerHTML = 'Chu vi là: ' + getPerimeter(my_radius).toFixed(2);
+            document.getElementById('result2b').innerHTML = 'Diện tích là: ' + getAcreage(my_radius).toFixed(2);
+        }
+        function getPerimeter(R) {
+            let perimeter = 2*PI*R;
+            return perimeter;
+        }
+        function getAcreage(R) {
+            let acreage = PI*R*R;
+            return acreage;
+        }
+    </script>
+    <h3>Bài 4: </h3>
+    <p><input type="button" value="Nhập kí tự" onclick="iptChar();"></p>
+    <div id="result4"></div>
+    <script>
+        function iptChar() {
+            let my_char = prompt('Nhập kí tự ');
+            if (my_char.length != 1) {
+                alert('Nhập lại kí tự');
+            } else {
+                if (checkNum(my_char)) {
+                    document.getElementById('result4').innerHTML = my_char + ' là kí tự số';
+                } else {
+                    document.getElementById('result4').innerHTML = my_char + ' không là kí tự số';
+                }
+            }
+        }
+        function checkNum(a) {
+            let Num = '0123456789';
+            if (Num.indexOf(a) >= 0) {
+                return true;
+            } return false;
+        }
+    </script>
+    <h3>Bài 5: </h3>
+    <p><input type="button" value="Nhập 3 số" onclick="iptNums();"></p>
+    <div id="result5"></div>
+    <script>
+        function iptNums() {
+            let my_num_1 = +prompt('Nhập số thứ nhất: ');
+            let my_num_2 = +prompt('Nhập số thứ hai: ');
+            let my_num_3 = +prompt('Nhập số thứ ba: ');
+            document.getElementById('result5').innerHTML = 'Số nhỏ nhát là '+ findMin(my_num_1, my_num_2, my_num_3);
+        }
+        function findMin(a, b, c) {
+            let min = a;
+            if (b < a) {
+                min = b;
+            } else if (c < a) {
+                min = c;
+            }
+            return min;
+        }
+    </script>
+    <h3>Bài 6: </h3>
+    <p><input type="button" value="Nhập số" onclick="iptNum6();"></p>
+    <div id="result6"></div>
+    <script>
+        function iptNum6() {
+            let my_num = +prompt('Nhập số: ');
+            if (checkNum(my_num)) {
+                document.getElementById('result6').innerHTML = my_num + ' là nguyên dương';
+            } else {
+                document.getElementById('result6').innerHTML = my_num + ' không là nguyên dương';
+            }
+        }
+        function checkNum(a) {
+            if ((a % 1 === 0) && (a > 0)) {
+                return true;
+            } else return false;
+        }
+    </script>
+    <h3>Bài 7:</h3>
+    <p><input type="button" value="Nhập hai số" onclick="inputNumber();"/></p>
+    <div id="result7a"></div>
+    <div id="result7b"></div>
+    <script>
+        function inputNumber() {
+            let num_1 = +prompt('Nhập số thứ nhất ');
+            let num_2 = +prompt('Nhập số thứ hai ');
+            document.getElementById('result7a').innerHTML = 'Hai số ban đầu là ' + num_1 + ', ' + num_2;
+            document.getElementById('result7b').innerHTML = 'Hai số sau đổi chỗ là ' + swap(num_1, num_2);
+        }
+        function swap(a, b) {
+            let array = [a, b];
+            let temp = array[0];
+            array[0] = array[1];
+            array[1] = temp;
+            return array;
+        }
+    </script>
+    <h3>Bài 8: </h3>
+    <p><input type="button" value="Nhập mảng số nguyên" onclick="inputNumbers();"></p>
+    <div id="result8a"></div>
+    <div id="result8b"></div>
+    <script>
+        function inputNumbers() {
+            let arr_size
+            do {
+                arr_size = +prompt('Nhập kích thước mảng: ');
+            } while (arr_size <=0);
+            let my_array = [];
+            for (let i=0; i < arr_size; i++) {
+                my_array[i] = +prompt('Nhập số thứ ' + i);
+            }
+            document.getElementById('result8a').innerHTML = 'Mảng của bạn là [' + my_array + ']';
+            document.getElementById('result8b').innerHTML =  'Mảng đảo ngược là [' + reverseArray(my_array) + ']';
+        }
+        function reverseArray(a) {
+            for (let i=0, j=(a.length-1); i <= j; i++, j--) {
+                let temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+            return a;
+        }
+    </script>
+    <h3>Bài 9: </h3>
+    <p>
+        <input type="button" value="Nhập mảng kí tự" onclick="inputArray();">
+        <input type="button" value="Nhập kí tự cần tìm" onclick="findChar();">
+    </p>
+    <div id="result9a"></div>
+    <div id="result9b"></div>
+    <script>
+        let my_array_9 = [];
+        function inputArray() {
+            let size_arr;
+            do {
+                size_arr = +prompt('Nhập kích thước mảng');
+            } while (size_arr < 1);
+            for (let i=0; i < size_arr; i++) {
+                my_array_9[i] = prompt('Nhập kí tự');
+                while (my_array_9[i].length != 1) {
+                    my_array_9[i] = prompt('Nhập lại kí tự');
+                }
+            }
+            document.getElementById('result9a').innerHTML = 'Mảng của bạn là [' + my_array_9 + ']';
+        }
+        function findChar() {
+            let my_char = prompt('Nhập kí tự');
+            while (my_char.length != 1) {
+                my_char = prompt('Nhập lại kí tự');
+            }
+            document.getElementById('result9b').innerHTML = 'Số lượng kí tự ' + my_char + ' trong mảng là ' + checkChar(my_char, my_array_9);
+        }
+        function checkChar(x, array) {
+            let count = 0;
+            for (let i=0; i < array.length; i++) {
+                if (array[i] === x) {
+                    count++;
+                }
+            }
+            return count;
+        }
+    </script>
+</body>
+</html>
