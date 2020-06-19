@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QUản lý sản phẩm</title>
+</head>
+<body>
+    <h3>Add new product</h3>
+    <p><input type="text" value="" id="newProduct"/> <input type="button" value="Add" onclick="addProduct();"/></p>
+    <h3>Display All Product</h3>
+    <p><span id="prouctTable"></span></p>
+    <script>
+        let productName = ['Sony Xperia', 'Samsung Galaxy', 'Nokia 6', 'Xiaomi Redmi Note 4', 'Apple iPhone 6S'];
+        showProductList();
+        function showProductList() {
+            let productList = '<table>';
+            productList += '<tr> <th>Product Name</th><th colspan="2">' + productName.length + ' products </th>'
+            for (let i=0; i < productName.length; i++) {
+                productList += '<tr> <td onclick="nameProduct('+i+');">' + productName[i] + '</td>';
+                productList += '<td><input type="button" value="Edit" onclick="editProduct('+i+');"/></td>';
+                productList += '<td><input type="button" value="Delete" onclick="deleteProduct('+i+');"/></td>';
+            }
+            document.getElementById('prouctTable').innerHTML = productList;
+        }
+        function addProduct() {
+            let new_product = document.getElementById('newProduct').value;
+            if ((new_product === '') || (productName.indexOf(new_product) >= 0)) {
+                alert('Nhập lại sản phẩm');
+            } else {
+                productName[productName.length] = new_product;
+            }
+            showProductList();
+        }
+        function nameProduct(x) {
+            document.getElementById('newProduct').value = productName[x];
+        }
+        function editProduct(x) {
+            let fixed_product = document.getElementById('newProduct').value;
+            console.log(fixed_product);
+            console.log(fixed_product === null);
+            if ((fixed_product === '') || (productName.indexOf(fixed_product) >= 0)) {
+                alert('Nhập lại sản phẩm');
+            } else {
+                productName[x] = fixed_product;
+                showProductList();
+            }
+        }
+        function deleteProduct(x) {
+            for (let j=x; j < productName.length; j++) {
+                productName[j] = productName[j+1];
+            }
+            productName.length -= 1;
+            showProductList();
+        }
+    </script>
+</body>
+</html>
