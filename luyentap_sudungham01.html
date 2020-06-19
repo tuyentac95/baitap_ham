@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập và sử dụng hàm 01</title>
+</head>
+<body>
+    <h3>Bài 1: </h3>
+    <p><input type="button" value="Message" onclick="alertMessage();"></p>
+    <script>
+        function alertMessage() {
+            alert('Xin chao');
+        }
+    </script>
+    <h3>Bài 2: </h3>
+    <p><input type="button" value="Nhập x" onclick="getAndShow2();"></p>
+    <div id="result2"></div>
+    <script>
+        function addX(x) {
+            return (x + 1);
+        }
+        function getAndShow2() {
+            let my_number = +prompt('Nhập x: ');
+            document.getElementById('result2').innerHTML = 'Giá trị x+1 là ' + addX(my_number);
+        }
+    </script>
+    <h3>Bài 3:</h3>
+    <p><input type="button" value="Nhập hai số" onclick="getAndShow3();"></p>
+    <div id="result3"></div>
+    <script>
+        function sum(a, b) {
+            if (a > b) {
+                alert('Số thư 1 lớn hơn số thứ 2');
+                return null;
+            } else {
+                return a + b;
+            }
+        }
+        function getAndShow3() {
+            let my_num_3a = +prompt('Nhập số thứ 1');
+            let my_num_3b = +prompt('NHập số thứ 2')
+            let result3 = sum(my_num_3a, my_num_3b);
+            document.getElementById('result3').innerHTML = result3;
+        }
+    </script>
+    <h3>Bài 4: </h3>
+    <script>
+        function addNumbers() {
+            firstNum = 4;
+            secondNum = 8;
+            result = firstNum + secondNum;
+            return result;
+        }
+        result = 0;
+        alert('Giá trị của result là: ' + result);
+        result = addNumbers();
+        alert('Giá trị của result là: ' + result);
+    </script>
+    <h3>Bài 5: </h3>
+    <p>Nhập tên ngôi sao:
+        <input type="button" value="Nhập" onclick="addStar();">
+    </p>
+    <div id="result5"></div>
+    <script>
+        let ngoi_sao = ['Polaris', 'Aldebaran', 'Deneb', 'Vega', 'Altair', 'Dubhe', 'Regulus'];
+        let chom_sao = ['Ursa Minor', 'Tarurus', 'Cygnus', 'Lyra', 'Aquila', 'Ursa Major', 'Leo'];
+        function checkStar(star) {
+            for (let i=0; i < ngoi_sao.length; i++) {
+                if (star == ngoi_sao[i]) {
+                    return chom_sao[i];
+                }
+            } return null;
+        }
+        function addStar() {
+            let my_star = prompt('Nhập tên ngôi sao: ');
+            let my_constell = checkStar(my_star);
+            if (my_constell == null) {
+                document.getElementById('result5').innerHTML = 'Không có thông tin về ' + my_star;
+            } else {
+                document.getElementById('result5').innerHTML = my_star + ' thuộc chòm sao ' + my_constell;
+            }
+        }
+    </script>
+</body>
+</html>

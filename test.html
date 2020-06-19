@@ -3,89 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="styleTicTocToe.css">
-    <style>
-        *{
-            margin: 0px auto;
-            padding: 5px;
-        }
-        table{
-            color: blue;
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        table td{
-            text-align: center;
-            vertical-align: middle;
-            font-size: 30px;
-            border: 1px solid black;
-            width:50px;
-            height: 50px;
-        }
-    </style>
 </head>
-<body onload="drawBoardGame(9);">
-<div id="gameboard">
-
 </div>
 <script>
-    let listGame=[];
-    function drawBoardGame(size){
-        let game="<table>";
-        for(i=0;i<size;i++){
-            game+="<tr>";
-            listGame[i]=[];
-            for(j=0;j<size;j++){
-                game+="<td onclick='changeStatus(this,"+i+","+j+");'>&nbsp;</td>";
-                listGame[i][j]=-1;
-            }
-            game+="</tr>";
-        }
-        game+="</table>";
-        document.getElementById("gameboard").innerHTML=game;
+    'use strict';
+
+    const fs = require('fs');
+
+    process.stdin.resume();
+    process.stdin.setEncoding('utf-8');
+
+    let inputString = '';
+    let currentLine = 0;
+
+    process.stdin.on('data', inputStdin => {
+        inputString += inputStdin;
+    });
+
+    process.stdin.on('end', _ => {
+        inputString = inputString.trim().split('\n').map(str => str.trim());
+
+        main();
+    });
+
+    function readLine() {
+        return inputString[currentLine++];
     }
-    let status='x';
-    function changeStatus(cell,xPos,yPos){
-        cell.innerHTML=status;
-        if(status=='x'){
-            listGame[xPos][yPos]=0;
-            status='o';
-        }
-        else{
-            listGame[xPos][yPos]=1;
-            status='x';
-        }
-        checkWin(xPos,yPos);
+
+    /*
+     * Complete the simpleArraySum function below.
+     */
+    function simpleArraySum(ar) {
+        let sum_arr;
+        for (let i=0; i < ar.length; i++) {
+            sum_arr += ar[i];
+        } return sum_arr;
+        /*
+         * Write your code here.
+         */
     }
-    function checkWin(xPos,yPos){
-        //Check row
-        console.log(listGame);
-        let count=1;
-        let i=xPos;
-        let j=yPos;
-        let valueOfCell=listGame[xPos][yPos];
-        alert(valueOfCell);
-        //Kiểm tra theo hàng ngang, mỗi giá trị đặt xuống kiểm tra phía trước và phía sau xem đủ điều kiện winner ko
-        while(listGame[i][j+1]==valueOfCell){
-            count++;
-            confirmWinner(count,5);//5 phần tử giống nhau
-            j++;
-        }
-        i=xPos;
-        j=yPos;
-        while(listGame[i][j-1]==valueOfCell){
-            count++;
-            confirmWinner(count,5);
-            j--;
-        }
-        //Tương tự như vậy thay đổi giá trị i,j để check theo chiều dọc, đường chéo
+
+    function main() {
+        const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+        const arCount = parseInt(readLine(), 10);
+
+        const ar = readLine().split(' ').map(arTemp => parseInt(arTemp, 10));
+
+        let result = simpleArraySum(ar);
+
+        ws.write(result + "\n");
+
+        ws.end();
     }
-    function confirmWinner(count,number){
-        if(count==number){
-            alert("You are winner!");
-            return;
-        }
-    }
+
 </script>
 </body>
 </html>
