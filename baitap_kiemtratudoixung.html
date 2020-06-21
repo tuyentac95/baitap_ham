@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra từ đối xứng</title>
+</head>
+<body>
+    <h3>Kiểm tra từ đối xứng</h3>
+    <p><input type="button" value="Nhập chuỗi" id="iptString" onclick="iptString();"></p>
+    <div id="result"></div>
+    <script>
+        function iptString() {
+            let my_string = prompt('Nhập từ của bạn: ');
+            if (isPalindrome(my_string)) {
+                document.getElementById('result').innerHTML = my_string + ' là từ đối xứng';
+            } else
+            document.getElementById('result').innerHTML = my_string + ' không đối xứng';
+        }
+        function isPalindrome(string) {
+            while (string[0] == string[string.length-1]) {
+                string = string.slice(1, string.length-1);
+                if (string.length > 1) {
+                    isPalindrome(string);
+                }
+                else return true;
+            }
+            return false
+        }
+    </script>
+</body>
+</html>
